@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% block body %}
+<div class="container d-flex justify-content-between align-items-center">
+  <h1 align="center">{{title}}</h1>
+  <div>
+    {{ post.likes|length }}
+    <a href="/like-post/{{post.id}}"
+      ><i class="bi bi-hand-thumbs-up-fill"></i
+    ></a>
+    {% if user.id == post.author %}
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-sm btn-primary dropdown-toggle"
+        data-bs-toggle="dropdown"
+      ></button>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="/delete-post/{{post.id}}" class="dropdown-item">Delete</a>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<br />
+<p>{{text}}</p>
+<br />
+<p>{{ingredients}}</p>
+<br />
+<div class="collapse" id="comments-{{post.id}}">
+  <div class="card">
+    <div class="card-body" id="comments-expanded-{{post.id}}">
+      {% for comment in post.comments %}
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <a href="/posts/{{comment.user.username}}"
+            >{{comment.user.username}}</a
+          >: {{comment.text}}
+        </div>
+        <div>
+          <small class="text-muted"> {{comment.date_created}}</small>
+          {% if user.id == comment.author or user.id == post.author %}
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-sm btn-primary dropdown-toggle"
+              data-bs-toggle="dropdown"
+            ></button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/delete-comment/{{comment.id}}" class="dropdown-item"
+                  >Delete</a
+                >
+              </li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<p class="card-text">
+  {% if post.comments|length > 0 %}
+  <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+    <small>View {{post.comments|length}} Comments</small>
+  </a>
+  {% else %}
+  <small class="text-muted">No Comments</small>
+  {% endif %}
+</p>
+<form
+  class="input-group mb-3"
+  method="POST"
+  action="/create-comment/{{post.id}}"
+>
+  <input
+    type="text"
+    id="text"
+    name="text"
+    class="form-control"
+    placeholder="Comment something!"
+  />
+  <button type="submit" class="btn btn-primary">Comment</button>
+</form>
+<div align="center">
+  <a href="/"
+    ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+  >
+</div>
+{% endblock %}

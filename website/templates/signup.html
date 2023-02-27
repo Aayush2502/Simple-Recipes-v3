@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Welcome to Simple Recipes</h1>
+        <p class="col-lg-10 fs-4">
+          Here you can find simple recipes for your meals, uploaded by people
+          just like you. You can also post your own recipes for other people to
+          find. Have fun cooking :)
+        </p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Enter Email"
+            />
+            <label for="email">Email Id</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Enter Username"
+            />
+            <label for="username">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password1"
+              name="password1"
+              placeholder="Enter Password"
+            />
+            <label for="password1">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password2"
+              name="password2"
+              placeholder="Confirm Password"
+            />
+            <label for="password2">Confirm Password</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">
+            Sign Up
+          </button>
+          <hr class="my-4" />
+          <small class="text-muted"
+            >Registered User? <a href="/login">Login</a></small
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
