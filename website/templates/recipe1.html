@@ -1,12 +1,21 @@
 {% extends "base.html" %} {% block body %}
-<div class="container d-flex justify-content-between align-items-center">
-  <h1 align="center">{{title}}</h1>
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="text-center">{{title}}</h1>
   <div>
-    {{ post.likes|length }}
-    <a href="/like-post/{{post.id}}"
-      ><i class="bi bi-hand-thumbs-up-fill"></i
-    ></a>
-    {% if user.id == post.author %}
+    <span id="likes-count-{{post.id}}"> {{ post.likes|length }}</span>
+    {% if user.id in post.likes|map(attribute="author")|list %}
+    <i
+      class="bi bi-hand-thumbs-up-fill"
+      id="like-button-{{post.id}}"
+      onclick="like(`{{post.id}}`)"
+    ></i>
+    {% else %}
+    <i
+      class="bi bi-hand-thumbs-up"
+      id="like-button-{{post.id}}"
+      onclick="like(`{{post.id}}`)"
+    ></i>
+    {% endif %} {% if user.id == post.author %}
     <div class="btn-group">
       <button
         type="button"
@@ -23,10 +32,10 @@
   </div>
 </div>
 <br />
-<p>{{text}}</p>
-<br />
-<p>{{ingredients}}</p>
-<br />
+<div class="row">
+  <div class="col">{{ text }}</div>
+  <div class="col">{{ ingredients }}</div>
+</div>
 <div class="collapse" id="comments-{{post.id}}">
   <div class="card">
     <div class="card-body" id="comments-expanded-{{post.id}}">
@@ -85,7 +94,7 @@
   <button type="submit" class="btn btn-primary">Comment</button>
 </form>
 <div align="center">
-  <a href="/"
+  <a href="/all-recipes"
     ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
   >
 </div>

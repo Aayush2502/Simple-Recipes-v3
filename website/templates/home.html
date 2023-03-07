@@ -1,10 +1,36 @@
-{% extends "posts_div.html" %} {% block title %}Recipes{% endblock %}{% block
-button %}
-<div align="center">
-  <a href="/create-post"
-    ><button type="button" class="btn btn-lg btn-primary">
-      Create a post
-    </button></a
-  >
+{% extends "base.html" %} {% block body %}
+<div class="container-fluid" style="height: 100vh">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img
+        src="{{url_for('static',filename='hero.jpg')}}"
+        class="d-block mx-lg-auto img-fluid rounded-4 shadow"
+        alt="Bootstrap Themes"
+        width="700"
+        height="500"
+        loading="lazy"
+      />
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Welcome to Simple Recipes</h1>
+      <p class="lead">
+        Here you can find simple recipes for your meals, uploaded by people just
+        like you. You can also post your own recipes for other people to find.
+        Have fun cooking :)
+      </p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a href="/create-post">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">
+            Post Recipe
+          </button>
+        </a>
+        <a href="/search-ingredients">
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+            Search Recipe
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

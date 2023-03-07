@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <div class="flex-shrink-0">
+      <img src="{{recipe['image']}}" alt="..."
+      width="40%"
+      height="40%">
+    </div>
+    <div class="flex-grow-1 ms-3">
+      <h4>{{recipe['title']}}</h4>
+    </div>
+  </div>  
+    <p>Instructions:</p>
+    {{recipe['instructions']|safe}}
+    <br />
+    {{recipe['inregdientsWidget'] | safe }}<br />
+    {{recipe['equipmentWidget'] | safe}}
+  </div>
+</div>
+{% endblock %}

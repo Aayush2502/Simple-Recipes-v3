@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container" align="center">
+  <h2>Find Nutritional value of your food</h2>
+  <br />
+  <form action="/get-nutrients">
+    <div class="input-group mb-3 gx-3" style="max-width: 50%">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Apple, flour, sugar"
+        aria-label="Nutrients"
+        aria-describedby="button-addon2"
+        id="nutrients"
+        name="nutrients"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="submit"
+          id="button-addon2"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid text-center">
+  {% if nutrition and title %} {% include 'result_nutrition.html' ignore missing
+  %} {% endif %}
+</div>
+{% endblock%}

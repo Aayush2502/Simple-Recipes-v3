@@ -1,0 +1,66 @@
+<h2>Recipes for you:</h2>
+{% for recipe in recipes %}
+<div class="col d-flex justify-content-center">
+  <div class="shadow card mb-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{recipe['image']}}" class="img-fluid rounded" alt="..." />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe['title'] }}</h5>
+          <p class="card-text">
+            {% if 'likes' not in recipe%} How many minutes for preparation?
+            {{recipe['preparationMinutes']}} <br />
+            How many minutes for cooking? {{recipe['cookingMinutes']}} <br />
+            How many likes has this recipe? {{recipe['aggregateLikes']}} <br />
+            {% else %} How many your ingridients?
+            {{recipe['usedIngredientCount']}}
+            <br />
+            How many missed ingridients? {{recipe['missedIngredientCount']}}
+            <br />
+            How many likes has this recipe? {{recipe['likes']}} <br />
+            {% endif %}
+          </p>
+          <a href="/recipe?id={{ recipe['id'] }}" class="btn btn-primary"
+            >View Recipe</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!--old results-->
+<!--
+  <div>
+  <ul class="list-unstyled">
+    {% for recipe in recipes %}
+    <li class="media">
+      <img
+        src="{{recipe['image']}}"
+        class="align-self-center mr-3"
+        alt="..."
+        width="15%"
+        height="15%"
+      />
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">
+          <a href="/recipe?id={{ recipe['id'] }}">{{ recipe['title'] }}</a>
+        </h5>
+        {% if 'likes' not in recipe%} How many minutes for preparation?
+        {{recipe['preparationMinutes']}} <br />
+        How many minutes for cooking? {{recipe['cookingMinutes']}} <br />
+        How many likes has this recipe? {{recipe['aggregateLikes']}} <br />
+        {% else %} How many your ingridients? {{recipe['usedIngredientCount']}}
+        <br />
+        How many missed ingridients? {{recipe['missedIngredientCount']}} <br />
+        How many likes has this recipe? {{recipe['likes']}} <br />
+        {% endif %}
+      </div>
+    </li>
+    <br />
+    {% endfor %}
+  </ul>
+</div>
+-->

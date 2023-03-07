@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block body %}
+<div class="container" align="center">
+  <h2>It's time for cooking! What do you have in the fridge?</h2>
+  <br />
+  <form action="/recipes">
+    <div class="input-group mb-3" style="max-width: 50%">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Apple, flour, sugar"
+        aria-label="Ingridients"
+        aria-describedby="button-addon2"
+        name="ingridients"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="submit"
+          id="button-addon2"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid text-center">
+  {% if recipes %} {% include 'result_recipes.html' ignore missing %} {% endif
+  %}
+</div>
+{% endblock %}

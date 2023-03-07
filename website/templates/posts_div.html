@@ -13,11 +13,20 @@
           >
             <a href="/posts/{{ post.user.username }}">{{post.user.username}}</a>
             <div>
-              {{ post.likes|length }}
-              <a href="/like-post/{{post.id}}"
-                ><i class="bi bi-hand-thumbs-up-fill"></i
-              ></a>
-              {% if user.id == post.author %}
+              <span id="likes-count-{{post.id}}"> {{ post.likes|length }}</span>
+              {% if user.id in post.likes|map(attribute="author")|list %}
+              <i
+                class="bi bi-hand-thumbs-up-fill"
+                id="like-button-{{post.id}}"
+                onclick="like(`{{post.id}}`)"
+              ></i>
+              {% else %}
+              <i
+                class="bi bi-hand-thumbs-up"
+                id="like-button-{{post.id}}"
+                onclick="like(`{{post.id}}`)"
+              ></i>
+              {% endif %} {% if user.id == post.author %}
               <div class="btn-group">
                 <button
                   type="button"
@@ -39,7 +48,6 @@
             <a href="/recipe/{{ post.id}}">
               <div class="container">
                 <h5 class="card-title">{{ post.title }}</h5>
-                <div class="card-text">{{post.text}}</div>
               </div>
             </a>
             <br />
